@@ -35,10 +35,10 @@ router.put('/:id', (req, res) => {
     const taskId = req.body.id;
     let queryText;
     switch (req.body.checked) {
-        case true:
+        case 'true':
             queryText = `UPDATE "todo" SET "checked" = 'FALSE' WHERE "id" = $1;`;
             break;
-        case false:
+        case 'false':
             queryText = `UPDATE "todo" SET "checked" = 'TRUE' WHERE "id" = $1;`;
             break; 
     }

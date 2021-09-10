@@ -8,6 +8,7 @@ function readyNow() {
     //add click events here
     $('#add-task-button').on('click', addNewTask);
     $('#todo-list').on('click', '.complete-button', updateTaskComplete);
+    $('#todo-list').on('click', '.uncomplete-button', updateTaskComplete);
 }
 
 function getTodoList() {
