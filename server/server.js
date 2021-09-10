@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 //router here
-const todoRouter = require();//router here
+const todoRouter = require('./routes/todo.router.js');//router here
 
 app.use(express.urlencoded({extended: true}));
 
