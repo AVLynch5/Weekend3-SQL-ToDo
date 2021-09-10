@@ -7,6 +7,7 @@ function readyNow() {
     getTodoList();
     //add click events here
     $('#add-task-button').on('click', addNewTask);
+    $('#todo-list').on('click', '.complete-button', updateTaskComplete);
 }
 
 function getTodoList() {
@@ -24,10 +25,19 @@ function getTodoList() {
 function addToDOM(thingsToDo) {
     $('#todo-list').empty();
     for (let task of thingsToDo) {
+        let buttonToUse;
+        switch (task.checked) {
+            case true:
+                buttonToUse = `<button data-id="${task.id}" class="uncomplete-button">Mark Uncompleted</button>`;
+                break;
+            case false:
+                buttonToUse = `<button data-id="${task.id}" class="complete-button">Mark Complete</button>`;
+                break;
+        }
         $('#todo-list').append(`
             <tr>
                 <td data-id="${task.id}">${task.task}</td>
-                <td>Filler</td>
+                <td>${buttonToUse}</td>
                 <td>Filler</td>
             </tr>
         `);
