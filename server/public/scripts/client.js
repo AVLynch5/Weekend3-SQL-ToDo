@@ -50,11 +50,15 @@ function addToDOM(thingsToDo) {
 }
 
 function addNewTask() {
-    const newTask = {task: $('#new-task-field').val()};
+    const newTask = $('#new-task-field').val();
+    if (!newTask) {
+        alert('Please enter a task');
+        return;
+    }
     $.ajax({
         type: 'POST',
         url: '/todo',
-        data: newTask,
+        data: {task: newTask},
     }).then(function(response) {
         console.log('Response from server', response);
         getTodoList();

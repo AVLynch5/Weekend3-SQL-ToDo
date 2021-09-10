@@ -34,3 +34,6 @@ tbody tr.active-row {
     color: #009879;
 }
 
+.strikeThrough {
+    text-decoration: line-through;
+}
