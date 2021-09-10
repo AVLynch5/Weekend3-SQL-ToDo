@@ -52,7 +52,9 @@ header h1 {
 .body-container {
     width: 60%;
     display: block;
-    margin: 0 auto;
+    margin-top: 4%;
+    margin-left: auto;
+    margin-right: auto;
     border: 2px solid black;
     background-color: white;
     padding: 0.5em;
