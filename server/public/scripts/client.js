@@ -27,18 +27,21 @@ function getTodoList() {
 function addToDOM(thingsToDo) {
     $('#todo-list').empty();
     for (let task of thingsToDo) {
+        let classToUse;
         let buttonToUse;
         switch (task.checked) {
             case true:
                 buttonToUse = `<button data-id="${task.id}" data-bool="${task.checked}" class="uncomplete-button">Mark Uncompleted</button>`;
+                classToUse = 'strikeThrough';
                 break;
             case false:
                 buttonToUse = `<button data-id="${task.id}" data-bool="${task.checked}" class="complete-button">Mark Complete</button>`;
+                classToUse = 'nostrikeThrough';
                 break;
         }
         $('#todo-list').append(`
             <tr>
-                <td data-id="${task.id}">${task.task}</td>
+                <td class="${classToUse}" data-id="${task.id}">${task.task}</td>
                 <td>${buttonToUse}</td>
                 <td><button data-id="${task.id}" class="delete-button">Delete Task</button></td>
             </tr>
