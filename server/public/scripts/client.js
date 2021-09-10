@@ -81,3 +81,18 @@ function updateTaskComplete() {
         console.log('Error in PUT', error);
     });
 }
+
+function deleteTask() {
+    const id = $(this).data('id');
+    console.log('id', id);
+    $.ajax({
+        method: 'DELETE',
+        url: `/todo/${id}`,
+    }).then(function(response) {
+        console.log('Task deleted');
+        getTodoList();
+    }).catch(function(error) {
+        alert('Something went wrong');
+        console.log('Error in DELETE', error);
+    });
+}
