@@ -61,3 +61,7 @@ header h1 {
 body {
     background-color: blue;
 }
+
+.input-and-button {
+    text-align: center;
+}
