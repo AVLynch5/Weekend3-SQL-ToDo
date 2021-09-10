@@ -37,3 +37,13 @@ tbody tr.active-row {
 .strikeThrough {
     text-decoration: line-through;
 }
+
+html, body {
+    font-family: 'Fira Sans Condensed';
+    margin: 0px;
+    padding: 0px;
+}
+
+header h1 {
+    text-align: center;
+}
