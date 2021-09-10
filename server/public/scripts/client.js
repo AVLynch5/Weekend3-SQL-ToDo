@@ -6,6 +6,7 @@ function readyNow() {
     console.log('JQ sourced');
     getTodoList();
     //add click events here
+    $('#add-task-button').on('click', addNewTask);
 }
 
 function getTodoList() {
@@ -31,4 +32,24 @@ function addToDOM(thingsToDo) {
             </tr>
         `);
     }
+}
+
+function addNewTask() {
+    const newTask = {task: $('#new-task-field').val()};
+    $.ajax({
+        type: 'POST',
+        url: '/todo',
+        data: newTask,
+    }).then(function(response) {
+        console.log('Response from server', response);
+        getTodoList();
+    }).catch(function(error) {
+        console.log('Error in POST', error);
+        alert('Unable to add task');
+    });
+    clearInput();
+}
+
+function clearInput() {
+    $('#new-task-field').val('');
 }
