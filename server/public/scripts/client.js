@@ -26,7 +26,7 @@ function addToDOM(thingsToDo) {
     for (let task of thingsToDo) {
         $('#todo-list').append(`
             <tr>
-                <td>${task.task}</td>
+                <td data-id="${task.id}">${task.task}</td>
                 <td>Filler</td>
                 <td>Filler</td>
             </tr>
@@ -52,4 +52,19 @@ function addNewTask() {
 
 function clearInput() {
     $('#new-task-field').val('');
+}
+
+function updateTaskComplete() {
+    const id = $(this).data('id');
+    console.log('id', id);
+    $.ajax({
+        method: 'PUT',
+        url: `/todo/${id}`,
+    }).then(function(response) {
+        console.log('Task updated');
+        getTodoList();
+    }).catch(function(error) {
+        alert('Something went wrong');
+        console.log('Error in PUT', error);
+    });
 }
