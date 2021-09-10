@@ -1,7 +1,7 @@
 /* Majority of table styling courtesy of Dom(Dcode) at https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l */
 table {
     border-collapse: collapse;
-    margin: 25px 0;
+    margin: auto;
     font-size: 0.9em;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0, 0.15);
@@ -47,4 +47,17 @@ html, body {
 header h1 {
     text-align: center;
     text-decoration: underline;
+}
+
+.body-container {
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+    border: 2px solid black;
+    background-color: white;
+    padding: 0.5em;
+}
+
+body {
+    background-color: blue;
 }
