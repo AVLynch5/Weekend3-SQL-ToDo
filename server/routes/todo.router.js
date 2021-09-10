@@ -31,17 +31,17 @@ router.post('/', (req, res) => {
 
 //PUT
 router.put('/:id', (req, res) => {
-    console.log(req.params.checked);
-    const taskId = req.params.id;
-    let queryText = `UPDATE "todo" SET "checked" = 'TRUE' WHERE "id" = $1;`;
-    //switch (req.params.checked) {
-        //case true:
-            //queryText = `UPDATE "todo" SET "checked" = 'FALSE' WHERE "id" = $1;`;
-            //break;
-        //case false:
-            //queryText = `UPDATE "todo" SET "checked" = 'TRUE' WHERE "id" = $1;`;
-            //break; 
-    //}
+    console.log(req.body.checked);
+    const taskId = req.body.id;
+    let queryText;
+    switch (req.body.checked) {
+        case true:
+            queryText = `UPDATE "todo" SET "checked" = 'FALSE' WHERE "id" = $1;`;
+            break;
+        case false:
+            queryText = `UPDATE "todo" SET "checked" = 'TRUE' WHERE "id" = $1;`;
+            break; 
+    }
     pool.query(queryText, [taskId]).then((result) => {
         res.sendStatus(200);
     }).catch((error) => {
