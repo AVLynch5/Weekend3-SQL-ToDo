@@ -28,10 +28,10 @@ function addToDOM(thingsToDo) {
         let buttonToUse;
         switch (task.checked) {
             case true:
-                buttonToUse = `<button data-id="${task.id}" class="uncomplete-button">Mark Uncompleted</button>`;
+                buttonToUse = `<button data-id="${task.id}" data-bool="${task.checked}" class="uncomplete-button">Mark Uncompleted</button>`;
                 break;
             case false:
-                buttonToUse = `<button data-id="${task.id}" class="complete-button">Mark Complete</button>`;
+                buttonToUse = `<button data-id="${task.id}" data-bool="${task.checked}" class="complete-button">Mark Complete</button>`;
                 break;
         }
         $('#todo-list').append(`
@@ -66,10 +66,12 @@ function clearInput() {
 
 function updateTaskComplete() {
     const id = $(this).data('id');
+    const bool = $(this).data('bool');
     console.log('id', id);
     $.ajax({
         method: 'PUT',
         url: `/todo/${id}`,
+        data: {id: id, checked: bool},
     }).then(function(response) {
         console.log('Task updated');
         getTodoList();
