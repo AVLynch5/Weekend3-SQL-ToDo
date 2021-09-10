@@ -9,6 +9,7 @@ function readyNow() {
     $('#add-task-button').on('click', addNewTask);
     $('#todo-list').on('click', '.complete-button', updateTaskComplete);
     $('#todo-list').on('click', '.uncomplete-button', updateTaskComplete);
+    $('#todo-list').on('click', '.delete-button', deleteTask);
 }
 
 function getTodoList() {
@@ -39,7 +40,7 @@ function addToDOM(thingsToDo) {
             <tr>
                 <td data-id="${task.id}">${task.task}</td>
                 <td>${buttonToUse}</td>
-                <td>Filler</td>
+                <td><button data-id="${task.id}" class="delete-button">Delete Task</button></td>
             </tr>
         `);
     }
