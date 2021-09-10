@@ -3,7 +3,7 @@ const pg = require('pg');
 
 //POOL config
 const config = {
-  database: 'Wk3_todo', 
+  database: 'weekend-to-do-app', 
   host: 'localhost', 
   port: 5432, 
   max: 10, 
