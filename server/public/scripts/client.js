@@ -113,20 +113,20 @@ function deleteTask(id) {
 }
 
 function smartDeleteCheck() {
-    const taskId = $(this).data('id');//like PUT, uses id data stored in clicked delete button
-    swal({
+    const taskId = $(this).data('id');//like PUT, uses id data stored in clicked delete button. Declares const = task id.
+    swal({//smart alert
         title: 'Are you sure?',
         text: 'Once deleted, you will not be able to recover this task!',
         icon: 'warning',
-        buttons: true,
+        buttons: true,//adds cancel button
         dangerMode: true,
     }).then(function(confirmDelete) {
-        if (confirmDelete) {
+        if (confirmDelete) {//if true
             swal('The task has been deleted', {icon: 'success',});
-            deleteTask(taskId);
+            deleteTask(taskId);//call deleteTask and pass on param taskID
         } else {
             swal('The task has not been deleted');
-            return;
+            return;//cancel function, deleteTask not called
         }
     });
 }
