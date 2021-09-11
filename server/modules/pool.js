@@ -3,10 +3,10 @@ const pg = require('pg');
 
 //POOL config
 const config = {
-  database: 'd56bv3nklm0p8r', 
-  host: 'ec2-107-20-153-39.compute-1.amazonaws.com', 
+  database: 'weekend-to-do-app', 
+  host: 'localhost', 
   port: 5432, 
-  max: 5, 
+  max: 10, 
   idleTimeoutMillis: 30000 
 };
 
