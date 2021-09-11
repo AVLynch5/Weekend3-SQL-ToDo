@@ -10,7 +10,7 @@ function readyNow() {
     $('#add-task-button').on('click', addNewTask);
     $('#todo-list').on('click', '.complete-button', updateTaskComplete);
     $('#todo-list').on('click', '.uncomplete-button', updateTaskComplete);
-    $('#todo-list').on('click', '.delete-button', deleteTask);
+    $('#todo-list').on('click', '.delete-button', smartDeleteCheck);
 }
 
 //function to GET todo list data and call addToDOM function
@@ -98,8 +98,7 @@ function updateTaskComplete() {
 }
 
 //DELETE function to delete task from DB
-function deleteTask() {
-    const id = $(this).data('id');//like PUT, uses id data stored in clicked delete button
+function deleteTask(id) {
     //console.log('id', id);//test
     $.ajax({
         method: 'DELETE',
@@ -110,5 +109,24 @@ function deleteTask() {
     }).catch(function(error) {
         alert('Something went wrong');
         console.log('Error in DELETE', error);
+    });
+}
+
+function smartDeleteCheck() {
+    const taskId = $(this).data('id');//like PUT, uses id data stored in clicked delete button
+    swal({
+        title: 'Are you sure?',
+        text: 'Once deleted, you will not be able to recover this task!',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+    }).then(function(confirmDelete) {
+        if (confirmDelete) {
+            swal('The task has been deleted', {icon: 'success',});
+            deleteTask(taskId);
+        } else {
+            swal('The task has not been deleted');
+            return;
+        }
     });
 }
