@@ -58,7 +58,7 @@ function addToDOM(thingsToDo) {
 function addNewTask() {
     const newTask = $('#new-task-field').val();//gets task from input field
     if (!newTask) {
-        alert('Please enter a task');
+        swal({title: 'Whoops!', text: 'Please enter a new task to proceed', icon: 'info', button: 'Gotcha!'});//smart alert
         return;//input check - if no input provided, function aborts and alert displays on DOM
     }
     $.ajax({
@@ -70,7 +70,7 @@ function addNewTask() {
         getTodoList();//calls GET function then appendToDOM
     }).catch(function(error) {
         console.log('Error in POST', error);
-        alert('Unable to add task');
+        swal({title: 'Sorry!', text: 'A POST error occurred', icon: 'error', button: 'Got it'});//smart alert
     });
     clearInput();//clears user input field
 }
@@ -92,7 +92,7 @@ function updateTaskComplete() {
         console.log('Task updated');
         getTodoList();//GET function then appendToDOM
     }).catch(function(error) {
-        alert('Something went wrong');
+        swal({title: 'Sorry!', text: 'A PUT error occurred', icon: 'error', button: 'Got it'});//smart alert
         console.log('Error in PUT', error);
     });
 }
@@ -107,7 +107,7 @@ function deleteTask(id) {
         console.log('Task deleted');
         getTodoList();
     }).catch(function(error) {
-        alert('Something went wrong');
+        swal({title: 'Sorry!', text: 'A DELETE error occurred', icon: 'error', button: 'Got it'});//smart alert
         console.log('Error in DELETE', error);
     });
 }
