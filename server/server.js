@@ -1,3 +1,4 @@
+//set up server static files
 const express = require('express');
 const app = express();
 //router here
