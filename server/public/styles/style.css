@@ -8,13 +8,14 @@ table {
 }
 
 thead tr {
-    background-color: #009879;
+    background-color: #3248B3;
     color: #ffffff;
     text-align: left;
 }
 
 th, td {
     padding: 12px 15px;
+    text-align: center;
 }
 
 tbody tr {
@@ -26,12 +27,12 @@ tbody tr:nth-of-type(even) {
 }
 
 tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: 2px solid #3248B3;
 }
 
 tbody tr.active-row {
     font-weight: bold;
-    color: #009879;
+    color: #3248B3;
 }
 
 .strikeThrough {
@@ -47,6 +48,7 @@ html, body {
 header h1 {
     text-align: center;
     text-decoration: underline;
+    margin-top: 0.1em;
 }
 
 .body-container {
@@ -56,14 +58,30 @@ header h1 {
     margin-left: auto;
     margin-right: auto;
     border: 2px solid black;
+    border-radius: 30px;
     background-color: white;
-    padding: 0.5em;
+    padding: 1em;
+
 }
 
+/* Background gradient configured using cssgradient.io */
 body {
-    background-color: blue;
+    background: rgb(59,55,116);
+    background: linear-gradient(90deg, rgba(59,55,116,1) 9%, rgba(0,212,255,1) 88%);
 }
 
 .input-and-button {
     text-align: center;
+}
+
+.fifty {
+    width: 50%;
+}
+
+.thirty {
+    width: 30%;
+}
+
+.twenty {
+    width: 20%;
 }
