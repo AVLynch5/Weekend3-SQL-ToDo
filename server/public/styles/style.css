@@ -2,10 +2,12 @@
 table {
     border-collapse: collapse;
     margin: auto;
+    table-layout: fixed; /* Stop table from spilling out of DIV*/
+    width: 100%;
     font-size: 0.9em;
-    min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0, 0.15);
     border: 1px solid black;
+    word-wrap: break-word; /* Stop text from spilling out of column */
 }
 
 thead tr {
@@ -15,7 +17,7 @@ thead tr {
 }
 
 th, td {
-    padding: 12px 15px;
+    padding: 10px 12px;
     text-align: center;
 }
 
