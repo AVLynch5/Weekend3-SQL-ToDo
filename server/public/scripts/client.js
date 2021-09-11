@@ -10,7 +10,7 @@ function readyNow() {
     $('#add-task-button').on('click', addNewTask);
     $('#todo-list').on('click', '.complete-button', updateTaskComplete);
     $('#todo-list').on('click', '.uncomplete-button', updateTaskComplete);
-    $('#todo-list').on('click', '.delete-button', deleteTask);
+    $('#todo-list').on('click', '.delete-button', smartDeleteCheck);
 }
 
 //function to GET todo list data and call addToDOM function
@@ -58,7 +58,7 @@ function addToDOM(thingsToDo) {
 function addNewTask() {
     const newTask = $('#new-task-field').val();//gets task from input field
     if (!newTask) {
-        alert('Please enter a task');
+        swal({title: 'Whoops!', text: 'Please enter a new task to proceed', icon: 'info', button: 'Gotcha!'});//smart alert
         return;//input check - if no input provided, function aborts and alert displays on DOM
     }
     $.ajax({
@@ -70,7 +70,7 @@ function addNewTask() {
         getTodoList();//calls GET function then appendToDOM
     }).catch(function(error) {
         console.log('Error in POST', error);
-        alert('Unable to add task');
+        swal({title: 'Sorry!', text: 'A POST error occurred', icon: 'error', button: 'Got it'});//smart alert
     });
     clearInput();//clears user input field
 }
@@ -92,14 +92,13 @@ function updateTaskComplete() {
         console.log('Task updated');
         getTodoList();//GET function then appendToDOM
     }).catch(function(error) {
-        alert('Something went wrong');
+        swal({title: 'Sorry!', text: 'A PUT error occurred', icon: 'error', button: 'Got it'});//smart alert
         console.log('Error in PUT', error);
     });
 }
 
 //DELETE function to delete task from DB
-function deleteTask() {
-    const id = $(this).data('id');//like PUT, uses id data stored in clicked delete button
+function deleteTask(id) {
     //console.log('id', id);//test
     $.ajax({
         method: 'DELETE',
@@ -108,7 +107,26 @@ function deleteTask() {
         console.log('Task deleted');
         getTodoList();
     }).catch(function(error) {
-        alert('Something went wrong');
+        swal({title: 'Sorry!', text: 'A DELETE error occurred', icon: 'error', button: 'Got it'});//smart alert
         console.log('Error in DELETE', error);
+    });
+}
+
+function smartDeleteCheck() {
+    const taskId = $(this).data('id');//like PUT, uses id data stored in clicked delete button. Declares const = task id.
+    swal({//smart alert
+        title: 'Are you sure?',
+        text: 'Once deleted, you will not be able to recover this task!',
+        icon: 'warning',
+        buttons: true,//adds cancel button
+        dangerMode: true,
+    }).then(function(confirmDelete) {
+        if (confirmDelete) {//if true
+            swal('The task has been deleted', {icon: 'success',});
+            deleteTask(taskId);//call deleteTask and pass on param taskID
+        } else {
+            swal('The task has not been deleted');
+            return;//cancel function, deleteTask not called
+        }
     });
 }
