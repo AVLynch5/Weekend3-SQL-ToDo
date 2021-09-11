@@ -48,7 +48,7 @@ html, body {
 header h1 {
     text-align: center;
     text-decoration: underline;
-    margin-top: 0.1em;
+    margin-top: 0;
 }
 
 .body-container {
